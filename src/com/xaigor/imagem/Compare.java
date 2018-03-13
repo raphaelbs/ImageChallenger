@@ -15,6 +15,10 @@ public class Compare {
 		this.count++;
 	}
 	
+	public void add(long sum){
+		this.count += sum;
+	}
+	
 	public BufferedImage getImage() {
 		return this.image;
 	}

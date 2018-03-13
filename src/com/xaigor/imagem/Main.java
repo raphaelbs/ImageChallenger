@@ -10,28 +10,30 @@ public class Main {
 		ListCompare lcs = new ListCompare();
 		
 		for (int i=1; i<2; i++) {
-			System.out.println("Lendo imagem " + i + ".png");
+			Log l = new Log("Lendo imagem " + i + ".png");
 			BufferedImage image = fu.readImg(i + "");
+			l.ok();
 			FullImage fi = new FullImage(image);
 			try {
-				System.out.println("Divindo imagem..");
+				l = new Log("Divindo imagem..");
 				fi.sliceImg(285, 285, 2, 1, 3, 4);
-				trying(lcs, fi, 2);
+				l.ok();
+				trying(lcs, fi, 0);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			fu.saveLCS(lcs);
-			System.out.println(": Imagens gravadas em gen/");
 		}
 		
-		System.out.println(": Tempo gasto: " + (System.currentTimeMillis() - t)/1000 + "s");
+		System.out.println("Tempo total: " + (System.currentTimeMillis() - t) + "ms");
 	}
 	
 	public static void trying(final ListCompare lcs, final FullImage fi, final int precision) {
 		System.out.println("- Tentando com precisao: " + precision);
 		try {
-			System.out.println("- Comparando items..");
+			Log l = new Log("- Comparando items");
 			lcs.updateList(fi, precision);
+			l.ok();
 			if (lcs.check26()) {
 				return;
 			} else {

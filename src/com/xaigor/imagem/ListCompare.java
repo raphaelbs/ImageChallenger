@@ -30,27 +30,33 @@ public class ListCompare {
 	}
 
 	public void updateList(final FullImage fi, final int precision) {
-		fi.cleanBlacks();
-		// Filtra o array slicedImage pelas imagens presentes no LCS
-		for (Compare cmp : lcs) {
+		if (lcs.size() > 0) {
+			// Filtra o array slicedImage pelas imagens presentes no LCS
+			lcsA: for (int i=lcs.size()-1; i>=0; i--) {
+				Compare cmp = lcs.get(i);
+				for (int j=i-1; j>=0; j--) {
+					Compare _cmp = lcs.get(j);
+					if (cmp.compare(_cmp.getImage(), precision)){
+						_cmp.add(cmp.getCount());
+						cmp = _cmp;
+						lcs.remove(i);
+						continue lcsA;
+					}
+				}
+			}
+		} else {
+			// As imagens restantes são adicionadas no LCS
 			for (int j=0; j<fi.getSize(); j++) {
 				if (fi.checkBlack(j)) continue;
-				if (cmp.compare(fi.getImage(j), precision)) {
-					fi.setBlack(j);
+				Compare compare = new Compare(fi.getImage(j));
+				for (int i=0; i<fi.getSize(); i++) {
+					if (fi.checkBlack(i)) continue;
+					if (compare.compare(fi.getImage(i), precision)) {
+						fi.setBlack(i);
+					}
 				}
+				lcs.add(compare);
 			}
-		}
-		// As imagens restantes são adicionadas no LCS
-		for (int j=0; j<fi.getSize(); j++) {
-			if (fi.checkBlack(j)) continue;
-			Compare compare = new Compare(fi.getImage(j));
-			for (int i=0; i<fi.getSize(); i++) {
-				if (fi.checkBlack(i)) continue;
-				if (compare.compare(fi.getImage(i), precision)) {
-					fi.setBlack(i);
-				}
-			}
-			lcs.add(compare);
 		}
 	}
 }

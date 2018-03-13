@@ -7,7 +7,6 @@ public class FullImage {
 	private BufferedImage fullImage;
 	private BufferedImage[] isolatedImage;
 	private boolean[] blackArray;
-	private int blackCount;
 	
 	public FullImage(final BufferedImage fullImage) {
 		this.fullImage = fullImage;
@@ -70,17 +69,6 @@ public class FullImage {
 	}
 	
 	public void setBlack(int index) {
-		blackCount++;
 		this.blackArray[index] = true;
-	}
-	
-	public int getBlackCount() {
-		return blackCount;
-	}
-	
-	public void cleanBlacks() {
-		for (int i = 0; i< blackArray.length; i++) {
-			blackArray[i] = false;
-		}
 	}
 }
