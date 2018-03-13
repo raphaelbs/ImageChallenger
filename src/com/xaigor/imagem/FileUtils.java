@@ -25,14 +25,13 @@ public class FileUtils {
 		return null;
 	}
 	
-	public void saveLCS(final ListCompare lcs) {
-		Log l = new Log("Gravando imagens");
+	public void saveLCS(final Comparators lcs) {
 		cleanFolder();
 		for (int i=0; i<lcs.size(); i++) {
 			Compare cmp = lcs.getLCS().get(i);
+			System.out.println(i + "_" + cmp.getCount());
 			saveImg(cmp.getImage(), i + "_" + cmp.getCount());
 		}
-		l.ok();
 	}
 	
 	public boolean saveImg(final BufferedImage img, final String name) {
