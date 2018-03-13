@@ -16,7 +16,7 @@ public class Main {
 			try {
 				System.out.println("Divindo imagem..");
 				fi.sliceImg(285, 285, 2, 1, 3, 4);
-				trying(lcs, fi, 3);
+				trying(lcs, fi, 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -42,11 +42,4 @@ public class Main {
 		}
 		trying(lcs, fi, precision + 1);
 	}
-	
-	
-	
-	
-
-	
-	
 }

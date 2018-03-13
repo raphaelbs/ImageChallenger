@@ -6,7 +6,8 @@ public class FullImage {
 	
 	private BufferedImage fullImage;
 	private BufferedImage[] isolatedImage;
-	private boolean[] checkArray;
+	private boolean[] blackArray;
+	private int blackCount;
 	
 	public FullImage(final BufferedImage fullImage) {
 		this.fullImage = fullImage;
@@ -49,7 +50,7 @@ public class FullImage {
 		}
 		
 		this.isolatedImage = isolatedImages;
-		this.checkArray = new boolean[isolatedImages.length];
+		this.blackArray = new boolean[isolatedImages.length];
 	}
 
 	public BufferedImage[] getIsolatedImage() {
@@ -64,17 +65,22 @@ public class FullImage {
 		return this.isolatedImage.length;
 	}
 	
-	public boolean checkSelected(int index) {
-		return this.checkArray[index] == true;
+	public boolean checkBlack(int index) {
+		return this.blackArray[index] == true;
 	}
 	
-	public void setSelected(int index) {
-		this.checkArray[index] = true;
+	public void setBlack(int index) {
+		blackCount++;
+		this.blackArray[index] = true;
 	}
 	
-	public void cleanSelection() {
-		for (int i = 0; i< checkArray.length; i++) {
-			checkArray[i] = false;
+	public int getBlackCount() {
+		return blackCount;
+	}
+	
+	public void cleanBlacks() {
+		for (int i = 0; i< blackArray.length; i++) {
+			blackArray[i] = false;
 		}
 	}
 }

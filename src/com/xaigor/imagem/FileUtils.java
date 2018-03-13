@@ -27,10 +27,13 @@ public class FileUtils {
 	
 	public void saveLCS(final ListCompare lcs) {
 		cleanFolder();
-		for (Compare cmp: lcs.getLCS()) {
-			System.out.println(cmp.getCount());
-			saveImg(cmp.getImage(), cmp.getCount() + "__");
+		int count = 0;
+		for (int i=0; i<lcs.size(); i++) {
+			Compare cmp = lcs.getLCS().get(i);
+			count += cmp.getCount();
+			saveImg(cmp.getImage(), i + "_" + cmp.getCount());
 		}
+		System.out.println(count);
 	}
 	
 	public boolean saveImg(final BufferedImage img, final String name) {

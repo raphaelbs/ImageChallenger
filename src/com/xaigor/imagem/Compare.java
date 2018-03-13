@@ -4,11 +4,11 @@ import java.awt.image.BufferedImage;
 
 public class Compare {
 	private BufferedImage image;
-	private int count;
+	private long count;
 	
 	public Compare (final BufferedImage image) {
 		this.image = image;
-		this.count = 1;
+		this.count = 0;
 	}
 	
 	public void add(){
@@ -19,18 +19,15 @@ public class Compare {
 		return this.image;
 	}
 	
-	public int getCount() {
+	public long getCount() {
 		return this.count;
 	}
 	
 	public void clearCount(){
-		this.count = 1;
+		this.count = 0;
 	}
 	
 	public boolean compare(final BufferedImage oImage, final int tol){
-		if (oImage.equals(this)) 
-			return false;
-		
 		int error = 0;
 		for (int y = 0; y < image.getHeight(); y++) {
 			for (int x = 0; x < image.getWidth(); x++) {
