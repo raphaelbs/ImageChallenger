@@ -10,6 +10,7 @@ public class Comparators {
 	
 	public Comparators() {
 		this.lcs = new ArrayList<>();
+		this.precision = 0;
 	}
 	
 	public Comparators(List<Compare> lcs) {
@@ -43,7 +44,7 @@ public class Comparators {
 			for (int j=i-1; j>=0; j--) {
 				Compare _cmp = lcs.get(j);
 				if (cmp.compare(_cmp.getImage(), precision)){
-					_cmp.add(cmp.getCount());
+					_cmp.add(cmp.getCount()-1);
 					cmp = _cmp;
 					lcs.remove(i);
 					continue lcsA;

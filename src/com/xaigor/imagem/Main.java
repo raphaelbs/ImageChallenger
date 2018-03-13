@@ -1,15 +1,12 @@
 package com.xaigor.imagem;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 	static FileUtils fu = new FileUtils("imagens", "gen");
 	
 	public static void main(String[] args) {
 		long t = System.currentTimeMillis();
-		List<Comparators> group = new ArrayList<>();
 		
 		for (int i=1; i<11; i++) {
 			Comparators lcs = new Comparators();
@@ -25,10 +22,9 @@ public class Main {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			group.add(lcs);
+			fu.saveLCS(lcs, i+"");
 		}
 		
-		fu.saveLCS(Comparators.reduce(group));
 		System.out.println("Tempo total: " + (System.currentTimeMillis() - t) + "ms");
 	}
 	
